@@ -8,17 +8,16 @@
     	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<context:component-scan base-package="com"></context:component-scan>
+	<context:component-scan base-package="database"></context:component-scan>
 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName="com.mysql.jdbc.Driver"
-		p:url="jdbc:mysql://localhost:3306/shino?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull" 
-		p:username="root" p:password="kde">
+		destroy-method="close" p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		p:url="jdbc:sqlserver://localhost:1433;DataBaseName=ccpweb" p:username="sa" p:password="1">
 	</bean>
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="dbViewer" class="com.DBViewer"></bean>
+	<bean id="dbViewer" class="database.DBViewer"></bean>
 
 </beans>
